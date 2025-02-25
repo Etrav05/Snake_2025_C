@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <windows.h>
 #define WIDTH		21
 #define HEIGHT		10
 
@@ -14,10 +15,15 @@ void initalizeGame() {
 	y = HEIGHT / 2;
 }
 
-void printGrid() {
-	system("cls");
+void setCursorPosition(int x, int y) { // this is a function made by windows to set a position to redraw an output from
+	COORD coord = { (SHORT)x, (SHORT)y };  // rather than completly clear and redraw it (fixes the flickering issue)
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
 
-	for (int i = 0; i < WIDTH; i++) { printf("="); }
+void printGrid() {
+	setCursorPosition(0, 0); // this allows for the grid to replace itself rather than constantly print downward 
+
+	for (int i = 0; i < WIDTH; i++) { printf("#"); }
 	printf("\n");
 
 	for (int i = 0; i < HEIGHT; i++) {
@@ -28,7 +34,7 @@ void printGrid() {
 			}
 
 			else if (j == x && i == y) {
-				printf("#");
+				printf("O");
 			}
 
 			else {
@@ -47,7 +53,7 @@ void printGrid() {
 		printf("\n");
 	}
 
-	for (int i = 0; i < WIDTH; i++) { printf("="); }
+	for (int i = 0; i < WIDTH; i++) { printf("#"); }
 	printf("\n");
 }
 
@@ -83,14 +89,14 @@ void logic() {
 
 	switch (key) { // snake head movement 
 		case 1:  // w - up
-			Sleep(10); // slow down sleep of vertical movement
+			Sleep(15); // slow down sleep of vertical movement
 			y--; 
 			break;
 		case 2:  // a - left
 			x--;
 			break;
 		case 3:  // s - down
-			Sleep(10);
+			Sleep(15);
 			y++;
 			break;
 		case 4:  // d - right
