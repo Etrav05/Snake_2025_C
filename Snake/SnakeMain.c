@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <windows.h>
-#define WIDTH		41
+#define WIDTH		40
 #define HEIGHT		20
 
 int snakeTailX[100], snakeTailY[100];
 
-int x, y, gameOver, key, snakeLength;
+int x, y, gameOver, key, snakeLength, fruitx, fruity;
 
 void initalizeGame() {
 	
@@ -13,6 +13,15 @@ void initalizeGame() {
 
 	x = WIDTH / 2;
 	y = HEIGHT / 2;
+
+	fruitx = rand() % WIDTH; // set the initial fruit position
+	fruity = rand() % HEIGHT;
+	
+	while (fruitx == 0)
+		fruitx = rand() % WIDTH;
+
+	while (fruity == 0)
+		fruity = rand() % HEIGHT;
 }
 
 void setCursorPosition(int x, int y) { // this is a function made by windows to set a position to redraw an output from
@@ -23,26 +32,28 @@ void setCursorPosition(int x, int y) { // this is a function made by windows to 
 void printGrid() {
 	setCursorPosition(0, 0); // this allows for the grid to replace itself rather than constantly print downward 
 
-	for (int i = 0; i < WIDTH / 2 + 1; i++) { printf("[]"); }
-	printf("]");
+	for (int i = 0; i < WIDTH / 2 + 2; i++) { printf("[]"); }
 	printf("\n");
 
 	for (int i = 0; i < HEIGHT; i++) {
-		for (int j = 0; j < WIDTH; j++) {
+		for (int j = 0; j <= WIDTH; j++) {
 
-			if (j == 0 || j == WIDTH - 1) {
+			if (j == 0 || j == WIDTH) {
 				printf("[]");
 			}
 
-			else if (j == x && i == y) {
+			if (j == x && i == y) {
 				printf("O");
 			}
+
+			else if (i == fruity && j == fruitx)
+				printf("*");
 
 			else {
 				int tailPtr = 0;
 				for (int k = 0; k < snakeLength; k++) {
 					if (snakeTailX[k] == j && snakeTailY[k] == i) { // if tails x is a value along the width, and the y is a value along the height
-						printf("*");
+						printf("o");
 						tailPtr = 1;
 					}
 				}
@@ -54,8 +65,7 @@ void printGrid() {
 		printf("\n");
 	}
 
-	for (int i = 0; i < WIDTH / 2 + 1; i++) { printf("[]"); }
-	printf("]");
+	for (int i = 0; i < WIDTH / 2 + 2; i++) { printf("[]"); }
 	printf("\n");
 }
 
@@ -126,11 +136,35 @@ void logic() {
 		gameOver = 1;
 	}
 
-	for (int i = 0; i < snakeLength; i++) {
+	for (int i = 1; i < snakeLength; i++) {
 		if (snakeTailX[i] == x && snakeTailY[i] == y) { // gameover when hitting tail
 			gameOver = 1;
 		}
 	}
+
+	if (x == fruitx && y == fruity) {
+		fruitx = rand() % WIDTH; // random position in the grid
+		fruity = rand() % HEIGHT;
+
+		while (fruitx == 0) // when teh fruit is collected, make a new one in a random place
+			fruitx = rand() % WIDTH;
+
+		// Generation of new fruit
+		while (fruity == 0)
+			fruity = rand() % HEIGHT;
+		// score += 10;
+		snakeLength += 2;
+	}
+}
+
+void gameOverScreen() {
+
+	printf("  ___   __   _  _  ____     __   _  _  ____  ____\n");
+	printf(" / __) / _\\ ( \\/ )(  __)   /  \\ / )( \\(  __)(  _ \\ \n");
+	printf("( (_ \\/    \\/ \\/ \\ ) _)   ( || )\\ \\/ / ) _)  )   /\n");
+	printf(" \\___/\\_/\\_/\\_)(_/(____)   \\__/  \\__/ (____)(__\\_)\n");
+
+
 }
 
 int main() {
@@ -141,9 +175,11 @@ int main() {
 		
 		printGrid(); 
 		input();
-		logic(); // continue developing this (specifically fruit)
+		logic();
 		Sleep(100);
 	}
+
+	gameOverScreen();
 
 	return 0;
 }
