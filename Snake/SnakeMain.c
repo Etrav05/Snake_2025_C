@@ -1,15 +1,18 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <windows.h>
-#define WIDTH		40
-#define HEIGHT		20
+#define WIDTH		20
+#define HEIGHT		10
 
 int snakeTailX[100], snakeTailY[100];
 
-int x, y, gameOver, key, snakeLength, fruitx, fruity;
+int x, y, score, gameOver, key, snakeLength, fruitx, fruity;
 
 void initalizeGame() {
 	
-	gameOver = 0;
+	gameOver, score = 0;
+
+	snakeLength = 1;
 
 	x = WIDTH / 2;
 	y = HEIGHT / 2;
@@ -27,6 +30,13 @@ void initalizeGame() {
 void setCursorPosition(int x, int y) { // this is a function made by windows to set a position to redraw an output from
 	COORD coord = { (SHORT)x, (SHORT)y };  // rather than completly clear and redraw it (fixes the flickering issue)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+void scoreDisplay() {
+
+	score = snakeLength * 50 - 50;
+
+	printf("Score: %d     Length: %d\n", score, snakeLength);
 }
 
 void printGrid() {
@@ -53,8 +63,15 @@ void printGrid() {
 				int tailPtr = 0;
 				for (int k = 0; k < snakeLength; k++) {
 					if (snakeTailX[k] == j && snakeTailY[k] == i) { // if tails x is a value along the width, and the y is a value along the height
-						printf("o");
-						tailPtr = 1;
+						if (k != snakeLength - 1) {
+							printf("c");
+							tailPtr = 1;
+						}
+
+						else {
+							printf("~");
+							tailPtr = 1;
+						}
 					}
 				}
 				if (!tailPtr) // print blank space if none of the above
@@ -67,6 +84,8 @@ void printGrid() {
 
 	for (int i = 0; i < WIDTH / 2 + 2; i++) { printf("[]"); }
 	printf("\n");
+
+	scoreDisplay();
 }
 
 int input() { // accept inputs and set them to a key value
@@ -101,14 +120,14 @@ void logic() {
 
 	switch (key) { // snake head movement 
 		case 1:  // w - up
-			Sleep(30); // slow down sleep of vertical movement
+			Sleep(50); // slow down speed of vertical movement
 			y--; 
 			break;
 		case 2:  // a - left
 			x--;
 			break;
 		case 3:  // s - down
-			Sleep(30);
+			Sleep(50);
 			y++;
 			break;
 		case 4:  // d - right
@@ -164,7 +183,29 @@ void gameOverScreen() {
 	printf("( (_ \\/    \\/ \\/ \\ ) _)   ( || )\\ \\/ / ) _)  )   /\n");
 	printf(" \\___/\\_/\\_/\\_)(_/(____)   \\__/  \\__/ (____)(__\\_)\n");
 
+}
 
+void highscore() {
+	char buff[100];
+	int n = 8;
+
+	FILE* highScore = fopen("Snake_Highscore.txt", "r");
+
+	if (!highScore) {
+		fprintf(stderr, "Error accessing file");
+	}
+
+	fgets(buff, n, highScore);
+	
+	if (atoi(buff) < score) {
+		fclose(highScore);
+		highScore = fopen("Snake_Highscore.txt", "w");
+
+		fprintf(highScore, "%d", score);
+	}
+
+
+	fclose(highScore);
 }
 
 int main() {
@@ -172,14 +213,15 @@ int main() {
 	initalizeGame();
 
 	while (!gameOver) {
-		
 		printGrid(); 
 		input();
 		logic();
-		Sleep(100);
-	}
-
+		Sleep(100); // bug here: If you click a directional key, you are able to click another directional key after this -> before the sleep is finished
+	}				//           making it possible to go directly back from the driection you came BEFORE the game moves the head the first direction
+					//           This means your key value will be changed but the head will not have moved and you will gameover instantly  
 	gameOverScreen();
+
+	highscore();
 
 	return 0;
 }
