@@ -1,0 +1,108 @@
+#include "Logic.h"
+
+void logic() {
+
+	switch (key) { // snake head movement 
+	case 1:  // w - up
+		y--;
+		Sleep(50); // slow down speed of vertical movement
+		break;
+	case 2:  // a - left
+		x--;
+		break;
+	case 3:  // s - down
+		y++;
+		Sleep(50);
+		break;
+	case 4:  // d - right
+		x++;
+		break;
+	}
+
+	int prevX = snakeTailX[0]; // initailize the previous body sections
+	int prevY = snakeTailY[0];
+	int prev2X, prev2Y; // buffers
+
+	snakeTailX[0] = x; // set the tail to the tails to the current x, y from initalizeGame 
+	snakeTailY[0] = y;
+
+	for (int i = 1; i < snakeLength; i++) { // for everything (after the head (1)) till the total length of the snake
+		prev2X = snakeTailX[i];
+		prev2Y = snakeTailY[i];
+		snakeTailX[i] = prevX;
+		snakeTailY[i] = prevY;
+		prevX = prev2X;
+		prevY = prev2Y;
+	}
+
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT) { // gameover hitting walls
+		gameOver = 1;
+	}
+
+	for (int i = 1; i < snakeLength; i++) {
+		if (snakeTailX[i] == x && snakeTailY[i] == y) { // gameover when hitting tail
+			gameOver = 1;
+		}
+	}
+
+	if (x == fruitx && y == fruity) {
+		fruitx = rand() % WIDTH; // random position in the grid
+		fruity = rand() % HEIGHT;
+
+		while (fruitx == 0) // when teh fruit is collected, make a new one in a random place
+			fruitx = rand() % WIDTH;
+
+		// Generation of new fruit
+		while (fruity == 0)
+			fruity = rand() % HEIGHT;
+		// score += 10;
+		snakeLength += 2;
+	}
+}
+
+void initalizeGame() { // initialize all values used for this game
+
+	gameOver, score = 0;
+
+	snakeLength = 1;
+
+	x = WIDTH / 2;
+	y = HEIGHT / 2;
+
+	fruitx = rand() % WIDTH; // set the initial fruit position
+	fruity = rand() % HEIGHT;
+
+	while (fruitx == 0)
+		fruitx = rand() % WIDTH;
+
+	while (fruity == 0)
+		fruity = rand() % HEIGHT;
+}
+
+int input() { // accept inputs and set them to a key value
+	while (kbhit()) {
+		switch (tolower(getch())) {
+		case 'w':
+			if (key != 3)
+				key = 1;
+			break;
+		case 'a':
+			if (key != 4)
+				key = 2;
+			break;
+		case 's':
+			if (key != 1)
+				key = 3;
+			break;
+		case 'd':
+			if (key != 2)
+				key = 4;
+			break;
+		case 'x':
+			gameOver = 1;
+			break;
+		}
+	}
+
+	return key; // this value will be used to move a certain direction
+}

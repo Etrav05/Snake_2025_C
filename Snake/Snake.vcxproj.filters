@@ -18,5 +18,34 @@
     <ClCompile Include="SnakeMain.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Logic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSpace.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Highscore.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Menus.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Logic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSpace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeMain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Highscore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Menus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

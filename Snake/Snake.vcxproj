@@ -127,7 +127,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameSpace.c" />
+    <ClCompile Include="Highscore.c" />
+    <ClCompile Include="Logic.c" />
+    <ClCompile Include="Menus.c" />
     <ClCompile Include="SnakeMain.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameSpace.h" />
+    <ClInclude Include="Highscore.h" />
+    <ClInclude Include="Logic.h" />
+    <ClInclude Include="Menus.h" />
+    <ClInclude Include="SnakeMain.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
