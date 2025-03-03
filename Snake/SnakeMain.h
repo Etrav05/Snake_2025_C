@@ -5,9 +5,14 @@
 #include <stdbool.h>
 #include <windows.h>
 
-#define WIDTH		20
-#define HEIGHT		10
+// #define WIDTH		20
+// #define HEIGHT		10
 
-int snakeTailX[100], snakeTailY[100];
+int snakeTailX[100], snakeTailY[100]; // snake lenghth
 
-int x, y, score, gameOver, key, snakeLength, fruitx, fruity, startMenuChoice;
+int score, gameOver, key, snakeLength, startMenuChoice, gridChoice; // menus and fuunction values
+
+int x, y, fruitx, fruity, height, width; // position values
+
+// int height = 10;
+// int width = 20;

@@ -9,6 +9,8 @@
 // -> Fix the multi-input bug
 // -> Fix body sections spawning in the top left of the grid before being placed on the active body
 // -> Create a traversable initial menu with: "start", "exit", "highscores", and "grid size"
+//		-> Make sure the "Snake" title card deletes after options are selected
+//		-> Have functional start, gridcsize, and exit options
 // -> etc..
 
 int main() {

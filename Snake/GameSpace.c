@@ -9,13 +9,13 @@ void setCursorPosition(int x, int y) { // this is a function made by windows to 
 void printGrid() {
 	setCursorPosition(0, 0); // this allows for the grid to replace itself rather than constantly print downward 
 
-	for (int i = 0; i < WIDTH / 2 + 2; i++) { printf("[]"); }
+	for (int i = 0; i < width / 2 + 2; i++) { printf("[]"); }
 	printf("\n");
 
-	for (int i = 0; i < HEIGHT; i++) {
-		for (int j = 0; j <= WIDTH; j++) {
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j <= width; j++) {
 
-			if (j == 0 || j == WIDTH) {
+			if (j == 0 || j == width) {
 				printf("[]");
 			}
 
@@ -49,7 +49,7 @@ void printGrid() {
 		printf("\n");
 	}
 
-	for (int i = 0; i < WIDTH / 2 + 2; i++) { printf("[]"); }
+	for (int i = 0; i < width / 2 + 2; i++) { printf("[]"); }
 	printf("\n");
 
 	scoreDisplay();

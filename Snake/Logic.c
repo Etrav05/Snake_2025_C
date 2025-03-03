@@ -35,7 +35,7 @@ void logic() {
 		prevY = prev2Y;
 	}
 
-	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT) { // gameover hitting walls
+	if (x < 0 || x >= width || y < 0 || y >= height) { // gameover hitting walls
 		gameOver = 1;
 	}
 
@@ -46,15 +46,15 @@ void logic() {
 	}
 
 	if (x == fruitx && y == fruity) {
-		fruitx = rand() % WIDTH; // random position in the grid
-		fruity = rand() % HEIGHT;
+		fruitx = rand() % width; // random position in the grid
+		fruity = rand() % height;
 
 		while (fruitx == 0) // when teh fruit is collected, make a new one in a random place
-			fruitx = rand() % WIDTH;
+			fruitx = rand() % width;
 
 		// Generation of new fruit
 		while (fruity == 0)
-			fruity = rand() % HEIGHT;
+			fruity = rand() % height;
 		// score += 10;
 		snakeLength += 2;
 	}
@@ -66,17 +66,17 @@ void initalizeGame() { // initialize all values used for this game
 
 	snakeLength = 1;
 
-	x = WIDTH / 2;
-	y = HEIGHT / 2;
+	x = width / 2;
+	y = height / 2;
 
-	fruitx = rand() % WIDTH; // set the initial fruit position
-	fruity = rand() % HEIGHT;
+	fruitx = rand() % width; // set the initial fruit position
+	fruity = rand() % height;
 
 	while (fruitx == 0)
-		fruitx = rand() % WIDTH;
+		fruitx = rand() % width;
 
 	while (fruity == 0)
-		fruity = rand() % HEIGHT;
+		fruity = rand() % height;
 }
 
 int input() { // accept inputs and set them to a key value
