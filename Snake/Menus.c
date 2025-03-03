@@ -1,5 +1,8 @@
 #include "Menus.h"
 
+int* pHeight = &height;
+int* pWidth = &width;
+
 void menuSelect() {
 
 	displayStartMenu();
@@ -9,7 +12,6 @@ void menuSelect() {
 			break; // continue with the game function given an input of 1 (start) 
 		case 2:
 			gridSize();
-			displayStartMenu();
 			break;
 		case 3:
 			gameOver = 1;
@@ -43,7 +45,7 @@ int gridSize() {
 
 	printf("\n       1 -> 5x10\n       2 -> 10x10\n       3 -> 20x20\n\n       Enter choice: "); // allow for rectangles lol
 
-	while (false) {
+	while (true) {
 		if (scanf_s("%d", &gridChoice) == 1 && gridChoice > 0 && gridChoice <= 3) {
 			return true, gridChoice;
 		}
@@ -54,18 +56,20 @@ int gridSize() {
 		}
 	}
 
-	switch (gridChoice) {
-		case 1:
-			height = 20;
-			width = 5;
+	switch (gridChoice) { // bug here (values not actual changing)
+		case 1: // 5x10
+			return height = 20;
+			return width = 5;
 			break;
-		case 2:
-			height = 20;
-			width = 10;
+		case 2: // 10x10
+			return height = 20;
+			return width = 10;
 			break;
-		case 3:
-			height = 40;
-			width = 20;
+		case 3: // 20x20
+			return height = 40;
+			return width = 20;
 			break;
 	}
+
+	displayStartMenu();
 }
