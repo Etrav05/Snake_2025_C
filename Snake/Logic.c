@@ -101,8 +101,18 @@ int input() { // accept inputs and set them to a key value
 		case 'x':
 			gameOver = 1;
 			break;
+		case 'p':
+			pause = 1 - pause;
+			break;
 		}
 	}
 
 	return key; // this value will be used to move a certain direction
+}
+
+void paused() {
+	while (pause == 1) { // pauses when needed
+		input();
+		Sleep(100);
+	}
 }

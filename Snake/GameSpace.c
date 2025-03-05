@@ -16,27 +16,27 @@ void printGrid() {
 		for (int j = 0; j <= width; j++) {
 
 			if (j == 0 || j == width) {
-				printf("[]");
+				printf("[]"); // walls
 			}
 
 			if (j == x && i == y) {
-				printf("O");
+				printf("O"); // snake head
 			}
 
 			else if (i == fruity && j == fruitx)
-				printf("*");
+				printf("*"); // fruit
 
 			else {
 				int tailPtr = 0;
 				for (int k = 0; k < snakeLength; k++) {
 					if (snakeTailX[k] == j && snakeTailY[k] == i) { // if tails x is a value along the width, and the y is a value along the height
 						if (k != snakeLength - 1) {
-							printf("c");
+							printf("c"); // snake body
 							tailPtr = 1;
 						}
 
 						else {
-							printf("o");
+							printf("o"); // snake tail
 							tailPtr = 1;
 						}
 					}

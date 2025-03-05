@@ -28,6 +28,7 @@ int main() {
 			while (!gameOver) {
 				printGrid();
 				input();
+				paused();
 				logic();
 				Sleep(100); // bug here: If you click a directional key, you are able to click another directional key after this -> before the sleep is finished
 			}				//           making it possible to go directly back from the direction you came BEFORE the game moves the head the first direction

@@ -6,3 +6,5 @@ void logic();
 void initalizeGame();
 
 int input();
+
+void paused();
