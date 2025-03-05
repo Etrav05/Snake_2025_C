@@ -9,13 +9,20 @@ void menuSelect() {
 
 	switch (startMenuChoice) {
 		case 1:
+			if (gridChoice <= 0) {
+				height = 10;
+				width = 20;
+			}
 			break; // continue with the game function given an input of 1 (start) 
 		case 2:
+			clearScreen();
 			gridSize();
+			clearScreen();
 			break;
 		case 3:
-			gameOver = 1;
-			break;
+			clearScreen();
+			gameOverScreen();
+			exit(0);
 	}
 }
 
@@ -39,37 +46,40 @@ int displayStartMenu() {
 int gridSize() {
 
 	printf("  ___  ____  ____  ____\n");
-	printf(" / __)(  - \\(_  -)(  _ \\\n");
+	printf(" / __)(  _ \\(_  _)(  _ \\\n");
 	printf("( (_-. )   / _)(_  )(_) )\n");
 	printf(" \\___/(_)\\_)(____)(____/\n");
 
-	printf("\n       1 -> 5x10\n       2 -> 10x10\n       3 -> 20x20\n\n       Enter choice: "); // allow for rectangles lol
+	printf("\n       1 -> 5x10\n       2 -> 10x10\n       3 -> 15x15\n\n       Enter choice: "); // allow for rectangles lol
 
 	while (true) {
 		if (scanf_s("%d", &gridChoice) == 1 && gridChoice > 0 && gridChoice <= 3) {
-			return true, gridChoice;
+			switch (gridChoice) { // bug here (values not actual changing)
+			case 1: // 5x10
+				height = 10;
+				width = 10;
+				break;
+			case 2: // 10x10
+				height = 10;
+				width = 20;
+				break;
+			case 3: // 20x20
+				height = 15;
+				width = 30;
+				break;
+			}
+			return true;
 		}
 
 		else {
-			fprintf(stderr, "Invalid option (Type 1-3): "); // make this recursive
-			return false;
+			fprintf(stderr, "Invalid option (Type 1-3): ");
+			while (getchar() != '\n'); // clear the input buffer
 		}
 	}
 
-	switch (gridChoice) { // bug here (values not actual changing)
-		case 1: // 5x10
-			return height = 20;
-			return width = 5;
-			break;
-		case 2: // 10x10
-			return height = 20;
-			return width = 10;
-			break;
-		case 3: // 20x20
-			return height = 40;
-			return width = 20;
-			break;
-	}
-
 	displayStartMenu();
+}
+
+void clearScreen() {
+	system("cls");
 }

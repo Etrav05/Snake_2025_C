@@ -6,3 +6,5 @@ void menuSelect();
 int displayStartMenu();
 
 int gridSize();
+
+void clearScreen();

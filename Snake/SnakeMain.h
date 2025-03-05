@@ -13,3 +13,4 @@ int snakeTailX[100], snakeTailY[100]; // snake lenghth
 int score, gameOver, key, snakeLength, startMenuChoice, gridChoice; // menus and fuunction values
 
 int x, y, fruitx, fruity, height, width; // position values
+
