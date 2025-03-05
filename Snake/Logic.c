@@ -80,7 +80,7 @@ void initalizeGame() { // initialize all values used for this game
 }
 
 int input() { // accept inputs and set them to a key value
-	while (kbhit()) {
+	if (kbhit()) { // changed this to IF so it only checks once every cycle (fixing the issue of multi-input)
 		switch (tolower(getch())) {
 		case 'w':
 			if (key != 3)
