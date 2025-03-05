@@ -53,6 +53,7 @@ void printGrid() {
 	printf("\n");
 
 	scoreDisplay();
+	controls();
 }
 
 void scoreDisplay() { // display score under game space
@@ -60,6 +61,11 @@ void scoreDisplay() { // display score under game space
 	score = snakeLength * 50 - 50;
 
 	printf("Score: %d     Length: %d\n", score, snakeLength);
+}
+
+void controls() {
+	printf("\n\n            W        Pause - P\n");
+	printf("Controls: A S D      Exit  - X\n");
 }
 
 void printHighscore() { // print the games score after gameovers
