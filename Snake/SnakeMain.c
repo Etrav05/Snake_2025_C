@@ -6,14 +6,15 @@
 
 // todo: 
 // -> Save multiple highscores given inputted usernames
-// -> Fix body sections spawning in the top left of the grid before being placed on the active body
+// -> Allow for "replay" option rather than instantly ending the process
 // -> ...
 // -> etc..
 
 // bugs:
-// -> Body parts spawn in the top left of the grid for a moment before attaching to the snake (they have collision)
+// -> ...
 
 int main() {
+	hideCursor();
 
 	while (startMenuChoice != 1) {
 		menuSelect();

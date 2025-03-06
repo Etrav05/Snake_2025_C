@@ -23,6 +23,7 @@ void logic() {
 	int prevY = snakeTailY[0];
 	int prev2X, prev2Y; // buffers
 
+	// This is the initial "tail" of the snake (overlaps the head)
 	snakeTailX[0] = x; // set the tail to the tails to the current x, y from initalizeGame 
 	snakeTailY[0] = y;
 
@@ -77,6 +78,13 @@ void initalizeGame() { // initialize all values used for this game
 
 	while (fruity == 0)
 		fruity = rand() % height;
+
+	for (int i = 0; i < MAX_LENGTH; i++) {
+		snakeTailX[i] = -1;
+		snakeTailY[i] = -1;
+	}
+	snakeTailX[0] = x; // First tail section starts at the head's position
+	snakeTailY[0] = y;
 }
 
 int input() { // accept inputs and set them to a key value
@@ -104,6 +112,8 @@ int input() { // accept inputs and set them to a key value
 		case 'p':
 			pause = 1 - pause;
 			break;
+		default:
+			break; // ignore invalid inputs
 		}
 	}
 

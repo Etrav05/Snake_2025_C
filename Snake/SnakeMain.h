@@ -14,3 +14,4 @@ int score, gameOver, key, snakeLength, startMenuChoice, gridChoice, pause; // me
 
 int x, y, fruitx, fruity, height, width; // position values
 
+

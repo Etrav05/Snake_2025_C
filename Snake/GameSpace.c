@@ -6,6 +6,21 @@ void setCursorPosition(int x, int y) { // this is a function made by windows to 
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
+void hideCursor() { // another windows made function to hide the cursor while redrawing the terminal
+	// Get the handle to the standard output (console)
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	// Define the cursor info structure
+	CONSOLE_CURSOR_INFO cursorInfo;
+	GetConsoleCursorInfo(consoleHandle, &cursorInfo);
+
+	// Set the cursor visibility to false (hide the cursor)
+	cursorInfo.bVisible = 0; // 0 = false, 1 = true
+
+	// Apply the changes
+	SetConsoleCursorInfo(consoleHandle, &cursorInfo);
+}
+
 void printGrid() {
 	setCursorPosition(0, 0); // this allows for the grid to replace itself rather than constantly print downward 
 
@@ -27,22 +42,24 @@ void printGrid() {
 				printf("*"); // fruit
 
 			else {
-				int tailPtr = 0;
+				int tailPtr = 0; // flag to check if a tail section was printed (to prevent the snake parts, which were just made, from printing in the top left)
 				for (int k = 0; k < snakeLength; k++) {
-					if (snakeTailX[k] == j && snakeTailY[k] == i) { // if tails x is a value along the width, and the y is a value along the height
-						if (k != snakeLength - 1) {
-							printf("c"); // snake body
-							tailPtr = 1;
-						}
-
-						else {
-							printf("o"); // snake tail
-							tailPtr = 1;
+					if (snakeTailX[k] != -1 && snakeTailY[k] != -1) { // check if the tail section is on-screen
+						if (snakeTailX[k] == j && snakeTailY[k] == i) { // check if the current grid position (j, i) matches a tail section
+							if (k != snakeLength - 1) {
+								printf("c"); // snake body
+							}
+							else {
+								printf("o"); // snake tail
+							}
+							tailPtr = 1; // set flag to indicate a tail section was printed
+							break; // exit the loop once a tail section is found
 						}
 					}
 				}
-				if (!tailPtr) // print blank space if none of the above
+				if (!tailPtr) { // if no tail section was printed, print a blank space
 					printf(" ");
+				}
 			}
 
 		}
