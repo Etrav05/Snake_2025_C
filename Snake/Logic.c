@@ -63,7 +63,7 @@ void logic() {
 
 void initalizeGame() { // initialize all values used for this game
 
-	gameOver, score = 0;
+	gameOver, score, replayYN = 0;
 
 	snakeLength = 1;
 

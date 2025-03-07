@@ -14,27 +14,39 @@
 // -> ...
 
 int main() {
-	hideCursor();
+    hideCursor();
 
-	while (startMenuChoice != 1) {
-		menuSelect();
-	}
+    while (1) {
+        startMenuChoice = 0;
 
-	initalizeGame();
-	clearScreen();
+        while (startMenuChoice != 1) {
+            menuSelect();
 
-	if (startMenuChoice == 1) { // if the player chooses "start" then begin the game
-		while (!gameOver) {
-			printGrid();
-			input();
-			paused();
-			logic();
-			Sleep(100);
-		}
+            initalizeGame();
+            clearScreen();
 
-		gameOverScreen();
-		highscore();
-	}
+            while (1) {
+                printGrid();
+                input();
+                paused();
+                logic();
+                Sleep(100);
 
-	return 0;
+                if (gameOver) {
+                    gameOverScreen();
+                    highscore();
+
+                    if (replay()) {
+                        break;
+                    }
+                    else {
+                        initalizeGame();
+                        clearScreen();
+                        gameOver = 0;
+                    }
+                }
+            }
+        }
+    }
+    return 0;
 }
