@@ -7,15 +7,15 @@
 // todo: 
 // -> Save multiple highscores given inputted usernames
 // -> Allow for grid resize when replaying
+// -> Add graphics
 // -> ...
 // -> etc..
 
 // bugs:
-// -> fruit can spawn on snakes body
-// ->
+// -> 
+
 
 int main() {
-    hideCursor();
 
     while (1) {
         startMenuChoice = 0;

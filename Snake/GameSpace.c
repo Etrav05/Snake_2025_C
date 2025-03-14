@@ -6,7 +6,7 @@ void setCursorPosition(int x, int y) { // this is a function made by windows to 
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-void hideCursor() { // another windows made function to hide the cursor while redrawing the terminal
+void hideCursor(int tf) { // another windows made function to hide the cursor while redrawing the terminal
 	// Get the handle to the standard output (console)
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -15,13 +15,15 @@ void hideCursor() { // another windows made function to hide the cursor while re
 	GetConsoleCursorInfo(consoleHandle, &cursorInfo);
 
 	// Set the cursor visibility to false (hide the cursor)
-	cursorInfo.bVisible = 0; // 0 = false, 1 = true
+	cursorInfo.bVisible = tf; // 0 = false, 1 = true
 
 	// Apply the changes
 	SetConsoleCursorInfo(consoleHandle, &cursorInfo);
 }
 
+
 void printGrid() {
+	hideCursor(0);
 	setCursorPosition(0, 0); // this allows for the grid to replace itself rather than constantly print downward 
 
 	for (int i = 0; i < width / 2 + 2; i++) { printf("[]"); }

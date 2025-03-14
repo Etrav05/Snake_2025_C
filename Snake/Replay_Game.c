@@ -1,6 +1,7 @@
 #include "Replay_Game.h"
 
 int replay() {
+	hideCursor(1);
 
 	while (true) {
 		printf("\nPlay again? (yes/no): ");
