@@ -6,12 +6,13 @@
 
 // todo: 
 // -> Save multiple highscores given inputted usernames
-// -> Allow for "replay" option rather than instantly ending the process
+// -> Allow for grid resize when replaying
 // -> ...
 // -> etc..
 
 // bugs:
-// -> ...
+// -> fruit can spawn on snakes body
+// ->
 
 int main() {
     hideCursor();

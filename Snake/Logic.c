@@ -46,83 +46,8 @@ void logic() {
 		}
 	}
 
-	if (x == fruitx && y == fruity) {
-		fruitx = rand() % width; // random position in the grid
-		fruity = rand() % height;
-
-		while (fruitx == 0) // when teh fruit is collected, make a new one in a random place
-			fruitx = rand() % width;
-
-		// Generation of new fruit
-		while (fruity == 0)
-			fruity = rand() % height;
-		// score += 10;
+	if (x == fruitx && y == fruity) { // if the snake overlaps with a fruit
+		spawnFruit();
 		snakeLength += 2;
-	}
-}
-
-void initalizeGame() { // initialize all values used for this game
-
-	gameOver, score, replayYN = 0;
-
-	snakeLength = 1;
-
-	x = width / 2;
-	y = height / 2;
-
-	fruitx = rand() % width; // set the initial fruit position
-	fruity = rand() % height;
-
-	while (fruitx == 0)
-		fruitx = rand() % width;
-
-	while (fruity == 0)
-		fruity = rand() % height;
-
-	for (int i = 0; i < MAX_LENGTH; i++) {
-		snakeTailX[i] = -1;
-		snakeTailY[i] = -1;
-	}
-	snakeTailX[0] = x; // First tail section starts at the head's position
-	snakeTailY[0] = y;
-}
-
-int input() { // accept inputs and set them to a key value
-	if (kbhit()) { // changed this to IF so it only checks once every cycle (fixing the issue of multi-input)
-		switch (tolower(getch())) {
-		case 'w':
-			if (key != 3)
-				key = 1;
-			break;
-		case 'a':
-			if (key != 4)
-				key = 2;
-			break;
-		case 's':
-			if (key != 1)
-				key = 3;
-			break;
-		case 'd':
-			if (key != 2)
-				key = 4;
-			break;
-		case 'x':
-			gameOver = 1;
-			break;
-		case 'p':
-			pause = 1 - pause;
-			break;
-		default:
-			break; // ignore invalid inputs
-		}
-	}
-
-	return key; // this value will be used to move a certain direction
-}
-
-void paused() {
-	while (pause == 1) { // pauses when needed
-		input();
-		Sleep(100);
 	}
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include "SnakeMain.h"
 
-void logic();
+int input();
 
-void initalizeGame();
+void paused();

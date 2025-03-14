@@ -1,6 +1,6 @@
 #pragma once
 #include "SnakeMain.h"
 
-void logic();
+#define MAX_LENGTH		100
 
 void initalizeGame();
