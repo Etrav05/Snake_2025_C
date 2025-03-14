@@ -38,8 +38,9 @@ int main() {
                     highscore();
 
                     if (replay()) {
-                        break;
+                        return 0;
                     }
+
                     else {
                         initalizeGame();
                         clearScreen();

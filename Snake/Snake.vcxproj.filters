@@ -39,6 +39,9 @@
     <ClCompile Include="Initialize_Game.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Replay_Game.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Logic.h">
@@ -63,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Initialize_Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Replay_Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

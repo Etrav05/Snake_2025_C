@@ -43,34 +43,6 @@ int displayStartMenu() {
 		fprintf(stderr, "Invalid option (Type 1-3): "); // make this recursive
 }
 
-int replay() {
-
-	while (true) {
-		printf("\nPlay again? (yes/no): ");
-		char playAgain[10];
-		if (scanf_s("%9s", playAgain, (unsigned)_countof(playAgain)) != 1) { // "%9s" only stores 9/10 entered chars, then we save the actual countof playAgain
-			fprintf(stderr, "Invalid input, please enter yes/no: \n");
-			while (getchar() != '\n'); 
-			continue; // restart the loop
-		}
-
-		for (int i = 0; playAgain[i]; i++) {
-			playAgain[i] = tolower(playAgain[i]);
-		}
-
-		if (strcmp(playAgain, "yes") == 0)
-			return 0;
-
-		else if (strcmp(playAgain, "no") == 0)
-			return 1;
-
-		else {
-			fprintf(stderr, "Invaild input, please enter yes/no: \n");
-			while (getchar() != '\n'); // discard remaining chars in the input buff
-		}
-	}
-}
-
 int gridSize() {
 
 	printf("  ___  ____  ____  ____\n");

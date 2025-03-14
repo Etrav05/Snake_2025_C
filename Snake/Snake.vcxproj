@@ -134,6 +134,7 @@
     <ClCompile Include="Input.c" />
     <ClCompile Include="Logic.c" />
     <ClCompile Include="Menus.c" />
+    <ClCompile Include="Replay_Game.c" />
     <ClCompile Include="SnakeMain.c" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Logic.h" />
     <ClInclude Include="Menus.h" />
+    <ClInclude Include="Replay_Game.h" />
     <ClInclude Include="SnakeMain.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
