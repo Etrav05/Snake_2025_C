@@ -1,4 +1,4 @@
-Just wanted to make a C based snake game to practice, includes features such as:
+Just wanted to make a C-based snake game to practice, includes features such as:
 
 - Start menu with 3 options: "Start", "Grid size", and "Exit"
 - 3 playable game spaces
